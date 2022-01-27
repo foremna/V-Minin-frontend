@@ -4,10 +4,13 @@ const existedUserLogin = 'the_best_user'
 const existedUserPassword = 12345678
 
 let userLogin = prompt('Введите логин').trim()
-let userPassword = prompt('Введите пароль').trim()
+let userPassword = +prompt('Введите пароль').trim()
 
-userLogin === existedUserLogin ? alert(`Добро пожаловать, ${userLogin}!`) : alert('Логин и (или) Пароль введены неверно!')
-userPassword === existedUserPassword ? alert(`Добро пожаловать, ${userLogin}!`) : alert('Логин и (или) Пароль введены неверно!')
+if (userLogin === existedUserLogin && userPassword === existedUserPassword) {
+	alert(`Добро пожаловать, ${userLogin}!`)
+} else {
+	alert('Логин и (или) Пароль введены неверно!')
+}
 
 // 2
 
