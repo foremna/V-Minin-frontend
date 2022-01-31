@@ -149,3 +149,33 @@ const sumAllElAcrossReduce = sumOfElInCube.reduce((acc, num) => {
 })
 
 console.log('sumAllElAcrossReduce', sumAllElAcrossReduce)
+
+let alphabetSort = ['b', 'c', 'a', 'd', 'e']
+alphabetSort.sort((a, b) => {
+	if (a > b) {
+		return 1
+	}
+
+	if (a < b) {
+		return -1
+	}
+
+	return 0
+})
+
+console.log(alphabetSort)
+
+let alphabetSortReverse = ['b', 'c', 'a', 'd', 'e']
+alphabetSortReverse.sort((a, b) => {
+	if (a < b) {
+		return 1
+	}
+
+	if (a > b) {
+		return -1
+	}
+
+	return 0
+})
+
+console.log(alphabetSortReverse)
