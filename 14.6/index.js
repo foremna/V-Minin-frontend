@@ -66,7 +66,7 @@ function createNewTask (id, text) {
 	btnRemoveTask.dataset.deleteTaskId = id
 	btnRemoveTask.textContent = 'Удалить'
 
-	taskItemContent.append(btnRemoveTask)
+	taskItemContainer.append(btnRemoveTask)
 
 	tasksList.append(taskItem)
 }
@@ -147,19 +147,19 @@ tasksList.addEventListener('click', (event) => {
 
 	if (isBtnDelete) {
 		modalOverlay.classList.remove('modal-overlay_hidden')
-	}
 
-	const datasetIdBtn = isBtnDelete.dataset.deleteTaskId
-	const taskItemFromId = document.querySelector(`[data-task-id="${datasetIdBtn}"]`)
+		const datasetIdBtn = isBtnDelete.dataset.deleteTaskId
+		const taskItemFromId = document.querySelector(`[data-task-id="${datasetIdBtn}"]`)
 
-	deleteModalBtnConfirm.addEventListener('click', () => {
-		taskItemFromId.remove()
-		modalOverlay.classList.add('modal-overlay_hidden')
-
-		const filteredTasksWithoutFoundedId = tasks.filter((key) => {
-			return key.id !== datasetIdBtn
+		deleteModalBtnConfirm.addEventListener('click', () => {
+			taskItemFromId.remove()
+			modalOverlay.classList.add('modal-overlay_hidden')
+	
+			const filteredTasksWithoutFoundedId = tasks.filter((key) => {
+				return key.id !== datasetIdBtn
+			})
 		})
-	})
+	}
 })
 
 deleteModalBtnCancel.addEventListener('click', () => {
@@ -183,5 +183,10 @@ document.addEventListener('keydown', (event) => {
 		body.classList.toggle('theme-dark')
 	}
 
+	body.className === 'theme-dark' ? changeThemeBtn.textContent = 'Light' : changeThemeBtn.textContent = 'Dark'
+})
+
+changeThemeBtn.addEventListener('click', () => {
+	body.classList.toggle('theme-dark')
 	body.className === 'theme-dark' ? changeThemeBtn.textContent = 'Light' : changeThemeBtn.textContent = 'Dark'
 })
