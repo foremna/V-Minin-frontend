@@ -1,4 +1,4 @@
-// 15.1
+// 15.2
 
 const USERS = 'https://jsonplaceholder.typicode.com/users'
 
@@ -26,29 +26,27 @@ const createUser = (user) => {
   return elemUser
 }
 
-const getAllUsers = () => {
+const getUsersByIds = (ids) => {
   toggleLoader()
-
-  const result = fetch(USERS, {
-    method: 'GET',
-  })
-
-  result
-    .then((response) => {
-      return response.json()
+  const requests = ids.map((id) => fetch(`${USERS}/${id}`))
+  
+  Promise.all(requests)
+    .then((responses) => {
+      const dataResult = responses.map((response) => response.json())
+      return Promise.all(dataResult)
     })
-    .then((users) => {
-      users.forEach((user) => {
+    .then((usersId) => {
+      usersId.forEach((user) => {
         const newUser = createUser(user.username)
         dataContainer.append(newUser)
       })
     })
     .catch((error) => {
-      console.error('Данные не загрузились')
+      console.error(error)
     })
     .finally(() => {
       toggleLoader()
     })
 }
 
-getAllUsers()
+getUsersByIds([5, 6, 2, 1])
